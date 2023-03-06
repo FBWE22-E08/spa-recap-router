@@ -50,6 +50,15 @@ function App() {
               />
               <Route path="/impressum" element={<Impressum />} />
               <Route path="/deleted" element={<DeletedNotes />} />
+              <Route
+                path="/note/:noteId"
+                element={
+                  <div className={styles.container}>
+                    <NoteList />
+                    <NoteView />
+                  </div>
+                }
+              />
             </Routes>
           </BrowserRouter>
         </div>

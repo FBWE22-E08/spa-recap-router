@@ -1,6 +1,7 @@
 import { ActiveNote } from "../../contexts/ActiveNote";
 import { NoteContext } from "../../contexts/NoteContext";
-import { useContext, useState } from "react";
+import { useEffect, useContext, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import styles from "./NoteView.module.css";
 
@@ -8,6 +9,16 @@ export default function NoteView() {
   const { activeNote, setActiveNote } = useContext(ActiveNote);
   const { notes, setNotes } = useContext(NoteContext);
   const [editMode, setEditMode] = useState(false);
+  const { noteId } = useParams();
+  const [note, setNote] = useState({ title: "", body: "" });
+
+  useEffect(() => {
+    const activeNote = notes.find((note) => note.id === noteId);
+
+    if (!activeNote) return;
+
+    setNote(activeNote);
+  }, [noteId]);
 
   const handleEditNoteBody = (newBodyText) => {
     const editedNoteIndex = notes.findIndex(
@@ -45,14 +56,14 @@ export default function NoteView() {
         <li onClick={() => setEditMode(!editMode)}>Edit</li>
         <li onClick={() => handleDeleteNote(activeNote.id)}>🚮</li>
       </ul>
-      <h3>{activeNote.title}</h3>
+      <h3>{note.title}</h3>
       {editMode ? (
         <textarea
           onChange={(event) => handleEditNoteBody(event.target.value)} // store in the state, all changes to textarea
-          defaultValue={activeNote.body}
+          defaultValue={note.body}
         />
       ) : (
-        <p>{activeNote.body}</p>
+        <p>{note.body}</p>
       )}
     </div>
   );
