@@ -8,6 +8,10 @@ import NoteList from "./components/NoteList/NoteList";
 import NoteView from "./components/NoteView/NoteView";
 
 import styles from "./App.module.css";
+import Impressum from "./components/Impressum/Impressum";
+import DeletedNotes from "./components/DeletedNotes/DeletedNotes";
+
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [notes, setNotes] = useState(mockData);
@@ -22,10 +26,32 @@ function App() {
       <ActiveNote.Provider value={{ activeNote, setActiveNote }}>
         <div>
           <h1>Notey - the notetaking application!</h1>
-          <div className={styles.container}>
-            <NoteList />
-            <NoteView />
-          </div>
+          <BrowserRouter>
+            <ul>
+              <li>
+                <Link to="/">Homepage</Link>
+              </li>
+              <li>
+                <Link to="/impressum">Impressum</Link>
+              </li>
+              <li>
+                <Link to="/deleted">Deleted</Link>
+              </li>
+            </ul>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <div className={styles.container}>
+                    <NoteList />
+                    <NoteView />
+                  </div>
+                }
+              />
+              <Route path="/impressum" element={<Impressum />} />
+              <Route path="/deleted" element={<DeletedNotes />} />
+            </Routes>
+          </BrowserRouter>
         </div>
       </ActiveNote.Provider>
     </NoteContext.Provider>

@@ -2,6 +2,7 @@ import { NoteContext } from "../../contexts/NoteContext";
 import { ActiveNote } from "../../contexts/ActiveNote";
 import { useContext, useEffect, useState } from "react";
 
+// import CSS module
 import styles from "./NoteList.module.css";
 
 export default function NoteList() {
