@@ -9,6 +9,7 @@ import NoteView from "./components/NoteView/NoteView";
 import styles from "./App.module.css";
 import Impressum from "./components/Impressum/Impressum";
 import DeletedNotes from "./components/DeletedNotes/DeletedNotes";
+import SearchMovie from "./components/SearchMovie/SearchMovie";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
@@ -23,6 +24,9 @@ function App() {
           <ul>
             <li>
               <Link to="/">Homepage</Link>
+            </li>
+            <li>
+              <Link to="/search_movie">Search Movie</Link>
             </li>
             <li>
               <Link to="/impressum">Impressum</Link>
@@ -41,6 +45,7 @@ function App() {
                 </div>
               }
             />
+            <Route path="/search_movie" element={<SearchMovie />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/deleted" element={<DeletedNotes />} />
             <Route
