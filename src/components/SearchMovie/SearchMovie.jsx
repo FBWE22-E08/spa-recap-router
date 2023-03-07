@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function SearchMovie() {
     //s= search in api
-    const apilink = "https://www.omdbapi.com/?s=ironman&apikey=89459220"
+    const apilink = "https://www.omdbapi.com/?s=ironman&apikey=YourAPIKEY"
     const [movies, setMovies] = useState([])
     const [singleMovie, setSingleMovie] = useState('')
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function SearchMovie() {
     const getMovie = (id) => {
         console.log(id)
         // i = imdbid in api
-        fetch(`https://www.omdbapi.com/?i=${id}&apikey=89459220`)
+        fetch(`https://www.omdbapi.com/?i=${id}&apikey=YourAPIKEY`)
             .then(resposne => resposne.json())
             .then(data => {
                 console.log(data)
